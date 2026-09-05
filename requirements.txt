@@ -1,0 +1,9 @@
+# Install PyTorch first (RTX 50-series needs cu128):
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+
+numpy>=1.26
+opencv-python>=4.9
+pillow>=10.0
+pyyaml>=6.0
+tqdm>=4.66
+matplotlib>=3.8

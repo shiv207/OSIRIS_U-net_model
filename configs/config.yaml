@@ -1,0 +1,59 @@
+seed: 42
+
+paths:
+  raw_dir: data/raw/refined_sos
+  splits_dir: data/splits
+  checkpoint_dir: checkpoints
+  log_dir: outputs/logs
+  inference_dir: outputs/inference
+
+dataset:
+  image_size: 256
+  in_channels: 3
+  mask_positive_min: 1
+
+dataloader:
+  batch_size: 4
+  num_workers: 4
+  pin_memory: true
+  persistent_workers: true
+
+model:
+  base_channels: 32
+  depth: 4
+
+loss:
+  bce_weight: 0.5
+  dice_weight: 0.5
+
+train:
+  epochs: 50
+  learning_rate: 1.0e-3
+  weight_decay: 1.0e-4
+  amp: true
+  early_stopping_patience: 10
+  scheduler:
+    factor: 0.5
+    patience: 5
+    min_lr: 1.0e-6
+  resume: null
+
+augmentation:
+  enabled: true
+  horizontal_flip: 0.5
+  vertical_flip: 0.5
+  rot90: true
+  affine_prob: 0.3
+  affine_rotate_deg: 10
+  affine_translate: 0.05
+  affine_scale: 0.05
+
+inference:
+  threshold: 0.5
+  apply_cv_postprocess: true
+  min_region_pixels: 32
+
+cv:
+  morph_open_ksize: 3
+  morph_close_ksize: 5
+  min_component_pixels: 32
